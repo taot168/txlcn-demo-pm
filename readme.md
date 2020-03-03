@@ -1,7 +1,7 @@
 txlcn 5.0 demo
 
-
-使用说明:
+   
+使用说明: pg
 
 1. 本Demo基于[txlcn-最新发布](https://github.com/codingapi/tx-lcn)版本
 2. 启动Demo前需先启动事务管理器TM（txlcn-demo-tm）。
