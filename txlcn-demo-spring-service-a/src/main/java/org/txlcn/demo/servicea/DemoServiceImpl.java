@@ -12,6 +12,7 @@ import org.txlcn.demo.common.spring.ServiceCClient;
 
 import java.util.Date;
 import java.util.Objects;
+import java.util.Random;
 
 /**
  * Description:
@@ -42,15 +43,19 @@ public class DemoServiceImpl implements DemoService {
     @Override
     public String execute(String value, String exFlag) {
         // step1. call remote ServiceD
-//        String dResp = serviceBClient.rpc(value);
+        String dResp = serviceBClient.rpc(value);
 
-        String dResp = restTemplate.getForObject("http://127.0.0.1:12002/rpc?value=" + value, String.class);
+//        String dResp =   restTemplate.getForObject("http://127.0.0.1:12002/rpc?value=" + value, String.class);
 
         // step2. call remote ServiceE
-        String eResp = serviceCClient.rpc(value);
+//        String eResp =  serviceCClient.rpc(value);
+        String eResp =   restTemplate.getForObject("http://127.0.0.1:12003/rpc?value=" + value, String.class);
 
         // step3. execute local transaction
         Demo demo = new Demo();
+        Random random=new Random();
+        random.ints(0,100);
+        demo.setId(Long.valueOf(random.nextInt(100)));
         demo.setGroupId(TracingContext.tracing().groupId());
         demo.setDemoField(value +"-service-a");
         demo.setCreateTime(new Date());

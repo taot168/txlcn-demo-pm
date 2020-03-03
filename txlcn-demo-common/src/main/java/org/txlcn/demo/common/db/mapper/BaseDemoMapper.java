@@ -14,7 +14,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface BaseDemoMapper {
 
-    @Insert("insert into t_demo(kid, demo_field, group_id, create_time,app_name) values(#{kid}, #{demoField}, #{groupId}, #{createTime},#{appName})")
+//    @Insert("insert into t_demo (id, kid, `demo_field`, `group_id`, `create_time`,app_name) values(#{id},#{kid}, #{demoField}, #{groupId}, #{createTime},#{appName})")
+    @Insert("insert into t_demo (id, kid, demofield, groupid, createtime,appname) values(#{id},#{kid}, #{demoField}, #{groupId}, #{createTime},#{appName})")
     void save(Demo demo);
 
     @Delete("delete from t_demo where id=#{id}")
